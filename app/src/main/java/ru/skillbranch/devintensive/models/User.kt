@@ -33,7 +33,7 @@ data class User (
         /*println("It's alive! \n${if(lastName==="Doe") "His name id $firstName $lastName" else "And his name is $firstName $lastName!" }\n" +
         "${getIntro()}" +
         "$introBit")*/
-        println("It's alive! \n${if(lastName==="Doe") "His name id $firstName $lastName" else "And his name is $firstName $lastName!" }")
+        //println("It's alive! \n${if(lastName==="Doe") "His name id $firstName $lastName" else "And his name is $firstName $lastName!" }")
     }
 
     companion object Factory {

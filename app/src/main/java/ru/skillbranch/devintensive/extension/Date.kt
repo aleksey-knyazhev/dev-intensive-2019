@@ -7,6 +7,7 @@ const val SECOND = 1000L
 const val MINUTE = 60 * SECOND
 const val HOUR = 60 * MINUTE
 const val DAY = 60 * HOUR
+const val YEAR = 365 * DAY
 
 fun Date.format(pattern:String="HH:mm:ss dd.MM.yy"):String{
     val dateFormat = SimpleDateFormat(pattern, Locale("ru"))
@@ -33,7 +34,23 @@ enum class TimeUnits{
     DAY
 }
 
-fun Date.humanazeDiff(date: Date = Date()): String {
-    //TODO
-    return ""
+//fun Date.humanazeDiff(date: Date = Date()): String {
+fun Date.humanazeDiff(): String {
+    val currentDate = Date()
+    //val difference = currentDate.compareTo(this)
+    val difference = currentDate.time - this.time
+    val result:String
+
+    result = when{
+        difference <= MINUTE -> "только что"
+        difference <= MINUTE * 3 -> "несколько минут назад"
+        difference <= HOUR -> "менее часа назад"
+        difference <= HOUR * 3 -> "час назад"
+        difference <= DAY -> "несколько часов назад"
+        difference <= DAY * 3 -> "несколько дней назад"
+        difference <= YEAR -> "более года назад"
+        difference >= YEAR -> "более чем через год"
+        else -> "давно"
+    }
+    return result
 }
