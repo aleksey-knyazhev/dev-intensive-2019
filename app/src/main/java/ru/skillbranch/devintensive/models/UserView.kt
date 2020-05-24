@@ -1,8 +1,5 @@
 package ru.skillbranch.devintensive.models
 
-import android.provider.ContactsContract
-import java.sql.Struct
-
 class UserView(
     val id:String,
     val fullName:String,
