@@ -34,8 +34,8 @@ enum class TimeUnits{
     DAY
 }
 
-//fun Date.humanazeDiff(date: Date = Date()): String {
-fun Date.humanazeDiff(): String {
+//fun Date.humanizeDiff(date: Date = Date()): String {
+fun Date.humanizeDiff(): String {
     val currentDate = Date()
     //val difference = currentDate.compareTo(this)
     val difference = currentDate.time - this.time

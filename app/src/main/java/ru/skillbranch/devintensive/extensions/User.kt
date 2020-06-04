@@ -10,7 +10,7 @@ fun User.toUserView():UserView{
     val initials = Utils.toInitials(firstName, lastName)
     val status = if(lastVisit == null) "Еще ни разу не был"
         else if (isOnLine) "online"
-        else "Последний раз был ${lastVisit!!.humanazeDiff()}"
+        else "Последний раз был ${lastVisit!!.humanizeDiff()}"
 
     return UserView(
         id,
