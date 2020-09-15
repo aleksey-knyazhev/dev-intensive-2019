@@ -74,7 +74,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onDestroy() {
         super.onDestroy()
         Log.d("M_MainActivity", "onDestroy")
-
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
