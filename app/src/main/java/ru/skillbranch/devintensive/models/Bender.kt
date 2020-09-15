@@ -15,7 +15,7 @@ class Bender(var status:Status = Status.NORMAL, var question:Question = Question
     fun listenAnswer(answer:String) : Pair<String, Triple<Int, Int, Int>>{
         return if(question.answer.contains(answer)) {
             question = question.nextQuestion()
-            "Отлично - это правильный ответ!\n${question.question}" to status.color
+            "Отлично - ты справился\n${question.question}" to status.color
         }else{
             status = status.nextStatus()
             "Это неправильный ответ\n${question.question}" to status.color
@@ -37,26 +37,33 @@ class Bender(var status:Status = Status.NORMAL, var question:Question = Question
         }
     }
 
-    enum class Question(val question:String, val answer:List<String>){
-        NAME("Как меня зовут?", listOf("бендер", "bender")){
+    enum class Question(val question: String, val answer: List<String>){
+        NAME("Как меня зовут?", listOf("бендер", "bender")) {
             override fun nextQuestion(): Question = PROFESSION
+            override fun validate(answer: String): Boolean = answer.trim().firstOrNull()?.isUpperCase() ?: false
         },
-        PROFESSION("Назови мою профессию?", listOf("сгибальшик", "bender")){
+        PROFESSION("Назови мою профессию?", listOf("сгибальщик", "bender")){
             override fun nextQuestion(): Question = MATERIAL
+            override fun validate(answer: String): Boolean = answer.trim().firstOrNull()?.isLowerCase() ?: false
         },
-        MATERIAL("Из чего я сделан?", listOf("металл", "дерево", "metal", "iron", "wood")){
+        MATERIAL("Из чего я сделан?", listOf("металл", "дерево", "iron", "wood", "metal")){
             override fun nextQuestion(): Question = BDAY
+            override fun validate(answer: String): Boolean = answer.trim().contains(Regex("\\d")).not()
         },
         BDAY("Когда меня создали?", listOf("2993")){
             override fun nextQuestion(): Question = SERIAL
+            override fun validate(answer: String): Boolean = answer.trim().contains(Regex("^[0-9]*$"))
         },
         SERIAL("Мой серийный номер?", listOf("2716057")){
             override fun nextQuestion(): Question = IDLE
+            override fun validate(answer: String): Boolean = answer.trim().contains(Regex("^[0-9]{7}$"))
         },
         IDLE("На этом все, вопросов больше нет", listOf()){
             override fun nextQuestion(): Question = IDLE
+            override fun validate(answer: String): Boolean = true
         };
 
         abstract fun nextQuestion():Question
+        abstract fun validate(answer: String):Boolean
     }
 }
