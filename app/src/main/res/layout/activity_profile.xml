@@ -133,9 +133,10 @@
     </LinearLayout>
     
     <RelativeLayout
+        style="@style/Profile.InfoItem"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/spacing_normal_16">
+        android:layout_height="wrap_content">
+
         <ImageView
             android:id="@+id/ic_avatar"
             android:layout_width="@dimen/btn_round_size_40"
@@ -155,7 +156,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/profile_hint_first_name"
-                tools:text="John"/>
+                tools:text="John"
+                android:inputType="textPersonName"
+                android:imeOptions="actionNext"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -172,7 +175,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/profile_hint_last_name"
-                tools:text="Doe"/>
+                tools:text="Doe"
+                android:inputType="textPersonName"
+                android:imeOptions="actionNext"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -185,10 +190,10 @@
         android:layout_marginLeft="@dimen/space_maximum_72"/>
     
     <LinearLayout
+        style="@style/Profile.InfoItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="@dimen/spacing_normal_16">
+        android:orientation="horizontal">
         
         <ImageView
             android:layout_width="@dimen/btn_round_size_40"
@@ -205,7 +210,8 @@
                 android:id="@+id/et_about"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/profile_hint_about"/>
+                android:hint="@string/profile_hint_about"
+                android:inputType="textMultiLine"/>
 
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
@@ -217,10 +223,10 @@
         android:layout_marginLeft="@dimen/space_maximum_72"/>
 
     <LinearLayout
+        style="@style/Profile.InfoItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="@dimen/spacing_normal_16">
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="@dimen/btn_round_size_40"
@@ -239,7 +245,9 @@
                 android:id="@+id/et_repository"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/profile_hint_repository"/>
+                android:hint="@string/profile_hint_repository"
+                android:inputType="textUri"
+                android:imeOptions="actionDone"/>
 
         </com.google.android.material.textfield.TextInputLayout>
         
