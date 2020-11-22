@@ -100,7 +100,7 @@
         style="@style/Profile.Metrics.Value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="0"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toStartOf="@+id/view3"
         app:layout_constraintStart_toStartOf="@+id/view2"
@@ -112,7 +112,7 @@
         style="@style/Profile.Metrics.Label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/profile_label_rating"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="@+id/textView3"
         app:layout_constraintHorizontal_bias="0.5"
@@ -120,28 +120,28 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
-          android:id="@+id/textView5"
-          style="@style/Profile.Metrics.Value"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="TextView"
-          app:layout_constraintBottom_toTopOf="@+id/textView6"
-          app:layout_constraintEnd_toEndOf="@+id/view2"
-          app:layout_constraintStart_toEndOf="@+id/view3"
-          app:layout_constraintTop_toBottomOf="@+id/imageView"
-          app:layout_constraintVertical_chainStyle="packed" />
+        android:id="@+id/textView5"
+        style="@style/Profile.Metrics.Value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintStart_toEndOf="@+id/view3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_chainStyle="packed" />
 
-      <TextView
-          android:id="@+id/textView6"
-          style="@style/Profile.Metrics.Label"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="TextView"
-          app:layout_constraintBottom_toBottomOf="@+id/view2"
-          app:layout_constraintEnd_toEndOf="@+id/textView5"
-          app:layout_constraintHorizontal_bias="0.5"
-          app:layout_constraintStart_toStartOf="@+id/textView5"
-          app:layout_constraintTop_toBottomOf="@+id/textView5" />
+    <TextView
+        android:id="@+id/textView6"
+        style="@style/Profile.Metrics.Label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/profile_string_respect"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="@+id/textView5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -164,9 +164,11 @@
         app:layout_constraintTop_toTopOf="@+id/imageView3">
 
         <com.google.android.material.textfield.TextInputEditText
+            style="@style/Profile.EditText.Single"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="hint" />
+            android:hint="@string/profile_hint_first_name"
+            tools:text="John" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -180,16 +182,19 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
+            style="@style/Profile.EditText.Single"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="hint" />
+            android:hint="@string/profile_hint_last_name"
+            tools:text="Doe" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/divider"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginStart="72dp"
+        android:layout_marginTop="5dp"
         android:background="@color/color_divider_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -200,8 +205,9 @@
         android:layout_width="@dimen/btn_round_size_40"
         android:layout_height="@dimen/btn_round_size_40"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/divider"
         app:srcCompat="@drawable/ic_about" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -215,16 +221,19 @@
         app:layout_constraintTop_toTopOf="@+id/imageView4">
 
         <com.google.android.material.textfield.TextInputEditText
+            style="@style/Profile.EditText.MultiLine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="hint" />
+            android:hint="@string/profile_hint_about"
+            tools:text="Something" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <View
-        android:id="@+id/view4"
+        android:id="@+id/divider2"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginStart="72dp"
+        android:layout_marginTop="5dp"
         android:background="@color/color_divider_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -232,9 +241,41 @@
 
     <ImageView
         android:id="@+id/imageView5"
+        android:layout_width="@dimen/btn_round_size_40"
+        android:layout_height="@dimen/btn_round_size_40"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider2"
+        app:srcCompat="@drawable/ic_repo" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView8"
+        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintTop_toTopOf="@+id/imageView5">
+
+        <com.google.android.material.textfield.TextInputEditText
+            style="@style/Profile.EditText.Single"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/profile_hint_repository"
+            tools:text="https://github.com/john_doe" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/imageView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view4"
-        app:srcCompat="@drawable/ic_repo" />
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textInputLayout5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textInputLayout5"
+        app:layout_constraintTop_toTopOf="@+id/textInputLayout5"
+        app:srcCompat="@drawable/ic_eye_24dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
