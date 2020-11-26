@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:visibility="visible"
-    tools:context="ui.profile.ProfileActivity">
+    tools:context="ru.skillbranch.devintensive.ui.profile.ProfileActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ui.custom.AspectRatioImageView
+        <ru.skillbranch.devintensive.ui.custom.AspectRatioImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleType="centerCrop"
