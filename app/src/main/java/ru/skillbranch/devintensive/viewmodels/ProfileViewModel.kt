@@ -1,6 +1,7 @@
 package ru.skillbranch.devintensive.viewmodels
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.skillbranch.devintensive.models.Profile
@@ -20,11 +21,10 @@ class ProfileViewModel : ViewModel() {
         Log.d("M_ProfileViewModel", "view model cleared")
     }
 
-    fun getProfileDate(){
+    fun getProfileData():LiveData<Profile> = profileData
 
-    }
-
-    fun saveProfileDate(){
-
+    fun saveProfileData(profile:Profile){
+        repository.saveProfile(profile)
+        profileData.value = profile
     }
 }
