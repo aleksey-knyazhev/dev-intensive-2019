@@ -189,7 +189,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/color_divider_dark"
+        android:background="?attr/colorDivider"
         android:layout_marginLeft="@dimen/space_maximum_72"/>
     
     <LinearLayout
@@ -224,7 +224,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/color_divider_dark"
+        android:background="?attr/colorDivider"
         android:layout_marginLeft="@dimen/space_maximum_72"/>
 
     <LinearLayout
