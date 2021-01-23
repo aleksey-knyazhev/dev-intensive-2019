@@ -2,6 +2,7 @@ package ru.skillbranch.avatarimageview.ui.custom
 
 import android.animation.ValueAnimator
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.os.Parcel
@@ -18,15 +19,17 @@ import androidx.core.animation.doOnRepeat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.graphics.toRectF
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
-import ru.skillbranch.avatarimageview.R
-import ru.skillbranch.avatarimageview.extentions.dpToPx
+//import ru.skillbranch.avatarimageview.R
+import ru.skillbranch.devintensive.R
+//import ru.skillbranch.avatarimageview.extentions.dpToPx
+import ru.skillbranch.devintensive.extensions.dpToPx
 import kotlin.math.max
 
 class AvatarImageView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : ImageView(context, attrs, defStyleAttr), View.OnLongClickListener {
+) : androidx.appcompat.widget.AppCompatImageView(context, attrs, defStyleAttr), View.OnLongClickListener {
 
     companion object {
         private const val DEFAULT_BORDER_WIDTH = 2
@@ -64,7 +67,7 @@ class AvatarImageView @JvmOverloads constructor(
         if (attrs != null) {
             val ta = context.obtainStyledAttributes(attrs, R.styleable.AvatarImageView)
             borderWidth = ta.getDimension(
-                R.styleable.AvatarImageView_aiv_borderWidth,
+                R.styleable.AvatarImageView_aiv_borderWith,
                 context.dpToPx(DEFAULT_BORDER_WIDTH)
             )
 
