@@ -1,5 +1,6 @@
 package ru.skillbranch.devintensive.ui.adapters
 
+import android.graphics.Canvas
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import ru.skillbranch.devintensive.models.data.ChatItem
@@ -41,6 +42,23 @@ class ChatItemTouchHelperCalllback(
     override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
         if(viewHolder is ItemTouchViewHolder) viewHolder.onItemCleared()
         super.clearView(recyclerView, viewHolder)
+    }
+
+    override fun onChildDraw(
+        c: Canvas,
+        recyclerView: RecyclerView,
+        viewHolder: RecyclerView.ViewHolder,
+        dX: Float,
+        dY: Float,
+        actionState: Int,
+        isCurrentlyActive: Boolean
+    ) {
+        if(actionState == ItemTouchHelper.ACTION_STATE_SWIPE){
+            val itemView = viewHolder.itemView
+            drawBackgroung()
+            drawIcon()
+        }
+        super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
     }
 }
 
