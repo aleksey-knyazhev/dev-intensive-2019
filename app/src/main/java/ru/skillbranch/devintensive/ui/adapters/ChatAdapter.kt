@@ -3,7 +3,6 @@ package ru.skillbranch.devintensive.ui.adapters
 import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.OrientationEventListener
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -14,6 +13,8 @@ import kotlinx.android.synthetic.main.item_chat_single.*
 import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.models.data.ChatItem
 import ru.skillbranch.devintensive.models.data.ChatType
+import com.bumptech.glide.Glide
+
 
 class ChatAdapter(val listener: (ChatItem)->Unit) : RecyclerView.Adapter<ChatAdapter.ChatItemViewHolder>() {
     companion object{
@@ -88,9 +89,13 @@ class ChatAdapter(val listener: (ChatItem)->Unit) : RecyclerView.Adapter<ChatAda
 
         override fun bind(item:ChatItem, listener: (ChatItem)->Unit){
             if(item.avatar == null){
+                Glide.with(itemView)
+                    .clear(iv_avatar_single)
                 iv_avatar_single.setInitials(item.initials)
             }else{
-                //TODO set drawable
+                Glide.with(itemView)
+                    .load(item.avatar)
+                    .into(iv_avatar_single)
             }
 
             sv_indicator.visibility = if(item.isOnline) View.VISIBLE else View.GONE
