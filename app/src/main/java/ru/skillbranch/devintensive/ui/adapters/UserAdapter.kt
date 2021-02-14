@@ -1,8 +1,11 @@
 package ru.skillbranch.devintensive.ui.adapters
 
+import android.service.autofill.UserData
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.MutableLiveData
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.extensions.LayoutContainer
@@ -12,8 +15,8 @@ import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.models.data.UserItem
 import javax.xml.transform.ErrorListener
 
-class UserAdapter(val listener: (UserItem)->Unit) : RecyclerView.Adapter<UserAdapter.UserViewHolder>(){
-    private val items : List<UserItem> = listOf()
+abstract class UserAdapter(val listener: (UserItem)->Unit) : RecyclerView.Adapter<UserAdapter.UserViewHolder>(){
+    private var items : List<UserItem> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -22,6 +25,23 @@ class UserAdapter(val listener: (UserItem)->Unit) : RecyclerView.Adapter<UserAda
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) = holder.bind(items[position], listener)
+
+    fun updateData(data: List<UserItem>){
+        val diffCallback = object: DiffUtil.Callback(){
+            override fun areItemsTheSame(oldPos: Int, newPos: Int): Boolean = items[oldPos].id == data[newPos].id
+
+            override fun areContentsTheSame(oldPos: Int, newPos: Int): Boolean = items[oldPos].hashCode() == data[newPos].hashCode()
+
+            override fun getOldListSize(): Int = items.size
+
+            override fun getNewListSize(): Int = data.size
+        }
+
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        items = data
+        //notifyDataSetChanged()
+        diffResult.dispatchUpdatesTo(this)
+    }
 
     override fun getItemCount(): Int = items.size
 

@@ -1,5 +1,7 @@
 package ru.skillbranch.devintensive.models.data
 
+import android.service.autofill.UserData
+import ru.skillbranch.devintensive.extensions.humanizeDiff
 import ru.skillbranch.devintensive.utils.Utils
 import java.util.*
 
@@ -14,6 +16,23 @@ data class User (
     var isOnLine:Boolean = false
 //    var introBit: String
 ) {
+    fun toUserItem(): UserItem {
+        val lastActivity = when{
+            lastVisit == null -> "Еще ни разу не заходил"
+            isOnLine -> "online"
+            else -> "Последний раз был ${lastVisit.humanizeDiff()}"
+        }
+
+        return UserItem(
+            id,
+            "${firstName.orEmpty()} ${lastName.orEmpty()}",
+            Utils.toInitials(firstName, lastName),
+            avatar,
+            lastActivity,
+            false,
+            isOnLine
+        )
+    }
 //    var introBit: String = getIntro()
 //    var introBit: String = "getIntro()"
 //    var introBit: String
@@ -27,14 +46,14 @@ data class User (
 
     constructor(id: String) : this(id, "John", "Doe")
 
-    init {
+    /*init {
 //        introBit = "$firstName $lastName"
 //        introBit = getIntro()
         /*println("It's alive! \n${if(lastName==="Doe") "His name id $firstName $lastName" else "And his name is $firstName $lastName!" }\n" +
         "${getIntro()}" +
         "$introBit")*/
         //println("It's alive! \n${if(lastName==="Doe") "His name id $firstName $lastName" else "And his name is $firstName $lastName!" }")
-    }
+    }*/
 
     companion object Factory {
         private var lastId: Int = -1
