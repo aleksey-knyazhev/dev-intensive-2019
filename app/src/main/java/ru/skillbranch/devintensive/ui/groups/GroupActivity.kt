@@ -5,6 +5,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.children
@@ -54,8 +55,19 @@ class GroupActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if(item?.itemId == android.R.id.home){
+            finish()
+            overridePendingTransition(R.anim.idle, R.anim.bottom_down)
+            true
+        } else {
+            super.onOptionsItemSelected(item)
+        }
+    }
+
     private fun initToolbar() {
         setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     private fun initViews() {
@@ -69,6 +81,8 @@ class GroupActivity : AppCompatActivity() {
 
         fab.setOnClickListener{
             viewModel.handleCreateGroup()
+            finish()
+            overridePendingTransition(R.anim.idle, R.anim.bottom_down)
         }
     }
 
@@ -76,7 +90,15 @@ class GroupActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(GroupViewModel::class.java)
         //viewModel.getUsersData().observe(this, Observer{ usersAdapter.updateData(it) })
         viewModel.getUsersData().observe(this, Observer{ usersAdapter.updateData(it) })
-        viewModel.getSelectedData().observe(this, Observer { updateChips(it) })
+        viewModel.getSelectedData().observe(this, Observer {
+            updateChips(it)
+            toggleFab(it.size>1)
+        })
+    }
+
+    private fun toggleFab(isShow: Boolean) {
+        if(isShow) fab.show()
+        else fab.hide()
     }
 
     private fun addChipToGroup(user: UserItem){

@@ -1,4 +1,4 @@
-package ru.skillbranch.devintensive.data.managers
+ package ru.skillbranch.devintensive.data.managers
 
 import androidx.lifecycle.MutableLiveData
 import ru.skillbranch.devintensive.extensions.mutableLiveData
@@ -20,5 +20,11 @@ object CacheManager {
 
     fun nextChatId() : String{
         return "${chats.value!!.size}"
+    }
+
+    fun insetChat(chat : Chat){
+        val copy = chats.value!!.toMutableList()
+        copy.add(chat)
+        chats.value = copy
     }
 }
